@@ -1,0 +1,8 @@
+# Streamlit Community Cloud: https://docs.streamlit.io/deploy/streamlit-community-cloud
+# Render / Railway: use the Dockerfile in this repo.
+
+[server]
+headless = true
+
+[browser]
+gatherUsageStats = false

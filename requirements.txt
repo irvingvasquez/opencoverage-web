@@ -1,0 +1,4 @@
+opencoverage @ git+https://github.com/irvingvasquez/opencoverage.git@main
+streamlit>=1.30
+folium>=0.15
+streamlit-folium>=0.18
