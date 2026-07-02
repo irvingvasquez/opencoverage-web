@@ -16,6 +16,7 @@ def plan_from_uploads(
     config_bytes: bytes | None,
     config_name: str | None,
     *,
+    pattern: str = "back_forth",
     split: bool = False,
 ) -> tuple[list[FlightMission], Path]:
     """
@@ -40,6 +41,7 @@ def plan_from_uploads(
     result = plan(
         polygon=polygon_path,
         config=config_path,
+        pattern=pattern,
         split=split,
     )
     missions = result if isinstance(result, list) else [result]

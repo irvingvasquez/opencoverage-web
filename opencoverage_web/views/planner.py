@@ -12,6 +12,7 @@ from streamlit_folium import st_folium
 
 from opencoverage_web import APP_NAME
 from opencoverage_web.map_view import build_mission_map
+from opencoverage_web.patterns import PATTERN_OPTIONS
 from opencoverage_web.planning import load_survey_polygon, mission_to_qgc_bytes, plan_from_uploads
 
 
@@ -20,12 +21,14 @@ def _init_session_state() -> None:
         st.session_state.missions = None
         st.session_state.survey_polygon_wkt = None
         st.session_state.plan_error = None
+        st.session_state.selected_algorithm = None
 
 
 def _clear_results() -> None:
     st.session_state.missions = None
     st.session_state.survey_polygon_wkt = None
     st.session_state.plan_error = None
+    st.session_state.selected_algorithm = None
 
 
 def render() -> None:
@@ -47,6 +50,15 @@ def render() -> None:
             type=["ini"],
             help="UAV, camera, and planner settings.",
         )
+
+        st.header("Algorithm")
+        selected_pattern = st.selectbox(
+            "Planning algorithm",
+            options=PATTERN_OPTIONS,
+            format_func=lambda option: option.label,
+            help="Coverage path planning algorithm from the OpenCoverage library.",
+        )
+        st.caption(selected_pattern.description)
 
         st.header("Options")
         split_mission = st.checkbox(
@@ -83,12 +95,14 @@ def render() -> None:
                         polygon_file.name,
                         config_file.getvalue(),
                         config_file.name,
+                        pattern=selected_pattern.key,
                         split=split_mission,
                     )
                     polygon_path = tmp_dir / polygon_file.name
                     survey_polygon = load_survey_polygon(polygon_path)
                     st.session_state.missions = missions
                     st.session_state.survey_polygon_wkt = survey_polygon.wkt
+                    st.session_state.selected_algorithm = selected_pattern.label
             except Exception as exc:
                 st.session_state.plan_error = f"Planning failed: {exc}"
             finally:
@@ -103,7 +117,10 @@ def render() -> None:
         if not isinstance(survey_polygon, Polygon):
             st.error("Invalid survey polygon in session.")
         else:
-            st.success(f"Planned {len(missions)} mission segment(s).")
+            st.success(
+                f"Planned {len(missions)} mission segment(s) "
+                f"using **{st.session_state.selected_algorithm}**."
+            )
 
             for index, mission in enumerate(missions, start=1):
                 segment_label = f"Segment {index}" if len(missions) > 1 else "Mission"
