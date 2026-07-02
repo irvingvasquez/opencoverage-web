@@ -48,7 +48,6 @@ def render() -> None:
         )
 
         st.header("Options")
-        use_gpu = st.checkbox("GPU (optimal sweep)", value=False, help="Use CuPy when available.")
         split_mission = st.checkbox(
             "Split by flight time",
             value=False,
@@ -83,7 +82,6 @@ def render() -> None:
                         polygon_file.name,
                         config_file.getvalue(),
                         config_file.name,
-                        gpu=use_gpu,
                         split=split_mission,
                     )
                     polygon_path = tmp_dir / polygon_file.name

@@ -10,7 +10,6 @@ This project is **independent** from the OpenCoverage library: it depends on `op
 
 - Upload KML / `.poly` survey areas
 - Upload INI planner configuration (UAV, camera, overlaps, pattern)
-- Optional GPU-accelerated optimal sweep (when CuPy is installed on the host)
 - Optional mission splitting by flight time
 - Interactive map preview (field boundary + waypoint path)
 - Download QGC `.waypoints` files
@@ -42,12 +41,6 @@ Example inputs live in the OpenCoverage repo:
 
 - `../opencoverage/examples/sample_field.kml`
 - `../opencoverage/config/quad_tetracam.ini`
-
-### Optional GPU support
-
-```bash
-pip install -e ".[gpu]"
-```
 
 ## Deploy
 
