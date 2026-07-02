@@ -1,4 +1,4 @@
 opencoverage>=0.2.0
-streamlit>=1.30
+streamlit>=1.36
 folium>=0.15
 streamlit-folium>=0.18
