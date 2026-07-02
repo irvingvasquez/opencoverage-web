@@ -4,6 +4,8 @@ from __future__ import annotations
 
 import streamlit as st
 
+from opencoverage_web import APP_NAME
+
 CITATION = (
     "Vasquez-Gomez, J. I., Marciano-Melchor, M., Valentin, L., & Herrera-Lozada, J. C. (2020). "
     "Coverage path planning for 2d convex regions. "
@@ -13,11 +15,11 @@ CITATION = (
 
 def render() -> None:
     """Render the About page."""
-    st.title("About OpenCoverage")
+    st.title(f"About {APP_NAME}")
 
     st.markdown(
-        """
-        **OpenCoverage** is a web application for **coverage path planning** designed to
+        f"""
+        **{APP_NAME}** is a web application for **coverage path planning** designed to
         **compare route-planning algorithms** for aerial surveying. The tool implements
         several algorithms from the literature so users can upload a survey area,
         configure flight and sensor parameters, and evaluate how different planning
@@ -30,8 +32,9 @@ def render() -> None:
     with col_left:
         st.subheader("Implementation project")
         st.markdown(
-            """
-            - **Name:** OpenCoverage
+            f"""
+            - **App:** {APP_NAME}
+            - **Library:** OpenCoverage
             - **Purpose:** Open-source implementation and comparison of coverage
               path planning methods for UAV missions
             - **Features:** Multiple sweep patterns, camera overlap control,
@@ -65,9 +68,9 @@ def render() -> None:
 
         st.subheader("Links")
         st.markdown(
-            """
+            f"""
             - [OpenCoverage library (GitHub)](https://github.com/irvingvasquez/opencoverage)
-            - [OpenCoverage Web (GitHub)](https://github.com/irvingvasquez/opencoverage-web)
+            - [{APP_NAME} (GitHub)](https://github.com/irvingvasquez/opencoverage-web)
             """
         )
 

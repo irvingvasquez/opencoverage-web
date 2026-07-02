@@ -4,10 +4,11 @@ from __future__ import annotations
 
 import streamlit as st
 
+from opencoverage_web import APP_NAME
 from opencoverage_web.views import about, planner
 
 st.set_page_config(
-    page_title="OpenCoverage",
+    page_title=APP_NAME,
     page_icon="🛸",
     layout="wide",
     initial_sidebar_state="expanded",

@@ -10,6 +10,7 @@ from shapely import wkt
 from shapely.geometry import Polygon
 from streamlit_folium import st_folium
 
+from opencoverage_web import APP_NAME
 from opencoverage_web.map_view import build_mission_map
 from opencoverage_web.planning import load_survey_polygon, mission_to_qgc_bytes, plan_from_uploads
 
@@ -31,7 +32,7 @@ def render() -> None:
     """Render the mission planner page."""
     _init_session_state()
 
-    st.title("Mission Planner")
+    st.title(APP_NAME)
     st.caption("Upload a survey polygon and configuration file to plan a UAV coverage mission.")
 
     with st.sidebar:
